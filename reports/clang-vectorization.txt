@@ -1,0 +1,46 @@
+Compiler: Homebrew clang version 23.1.3
+Command flags: -std=c17 -O3 -mcpu=native -ffp-contract=fast -Rpass=loop-vectorize -Rpass-missed=loop-vectorize -Rpass-analysis=loop-vectorize
+
+src/kernels.c:18:13: remark: vectorized loop (vectorization width: 4, interleaved count: 4) [-Rpass=loop-vectorize]
+   18 |             for (size_t k = 0; k < input_features; ++k) {
+      |             ^
+src/kernels.c:15:9: remark: vectorized loop (vectorization width: 4, interleaved count: 4) [-Rpass=loop-vectorize]
+   15 |         for (size_t o = 0; o < output_features; ++o) {
+      |         ^
+src/kernels.c:36:13: remark: vectorized loop (vectorization width: 4, interleaved count: 4) [-Rpass=loop-vectorize]
+   36 |             for (size_t k = 0; k < input_features; ++k) {
+      |             ^
+src/kernels.c:40:45: remark: loop not vectorized: call instruction cannot be vectorized [-Rpass-analysis=loop-vectorize]
+   40 |             output[b * output_features + o] = sum;
+      |                                             ^
+src/kernels.c:40:45: remark: loop not vectorized: instruction cannot be vectorized [-Rpass-analysis=loop-vectorize]
+src/kernels.c:32:5: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+   32 |     for (size_t b = 0; b < batch; ++b) {
+      |     ^
+src/kernels.c:62:13: remark: vectorized loop (vectorization width: 4, interleaved count: 4) [-Rpass=loop-vectorize]
+   62 |             for (size_t o = 0; o < output_features; ++o) {
+      |             ^
+src/kernels.c:54:9: remark: vectorized loop (vectorization width: 4, interleaved count: 4) [-Rpass=loop-vectorize]
+   54 |         for (size_t o = 0; o < output_features; ++o) {
+      |         ^
+src/kernels.c:54:9: remark: vectorized loop (vectorization width: 4, interleaved count: 4) [-Rpass=loop-vectorize]
+src/kernels.c:86:13: remark: vectorized loop (vectorization width: 4, interleaved count: 4) [-Rpass=loop-vectorize]
+   86 |             for (size_t o = 0; o < output_features; ++o) {
+      |             ^
+src/kernels.c:79:27: remark: loop not vectorized: call instruction cannot be vectorized [-Rpass-analysis=loop-vectorize]
+   79 |             output_row[o] = bias[o];
+      |                           ^
+src/kernels.c:79:27: remark: loop not vectorized: instruction cannot be vectorized [-Rpass-analysis=loop-vectorize]
+src/kernels.c:74:5: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+   74 |     for (size_t b = 0; b < batch; ++b) {
+      |     ^
+src/kernels.c:122:13: remark: vectorized loop (vectorization width: 4, interleaved count: 4) [-Rpass=loop-vectorize]
+  122 |             for (size_t o = 0; o < output_features; ++o) {
+      |             ^
+src/kernels.c:114:27: remark: loop not vectorized: call instruction cannot be vectorized [-Rpass-analysis=loop-vectorize]
+  114 |             output_row[o] = aligned_bias[o];
+      |                           ^
+src/kernels.c:114:27: remark: loop not vectorized: instruction cannot be vectorized [-Rpass-analysis=loop-vectorize]
+src/kernels.c:107:5: remark: loop not vectorized [-Rpass-missed=loop-vectorize]
+  107 |     for (size_t b = 0; b < batch; ++b) {
+      |     ^

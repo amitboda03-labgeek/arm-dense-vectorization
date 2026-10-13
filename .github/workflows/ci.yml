@@ -1,0 +1,24 @@
+name: correctness
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        compiler: [clang, gcc]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test with Clang
+        if: matrix.compiler == 'clang'
+        run: make CLANG=clang NATIVE_FLAGS=-march=native test-clang
+      - name: Test with GCC
+        if: matrix.compiler == 'gcc'
+        run: make GCC=gcc NATIVE_FLAGS=-march=native test-gcc

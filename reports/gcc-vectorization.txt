@@ -1,0 +1,44 @@
+Compiler: gcc-16 (Homebrew GCC 16.2.0) 16.2.0
+Command flags: -std=c17 -O3 -mcpu=native -ffp-contract=fast -fopt-info-vec-{optimized,missed}
+
+== Optimized loops ==
+src/kernels.c:62:34: optimized: loop vectorized using 16 byte vectors and unroll factor 4
+src/kernels.c:62:34: optimized:  loop versioned for vectorization because of possible aliasing
+src/kernels.c:54:30: optimized: loop vectorized using 16 byte vectors and unroll factor 4
+src/kernels.c:54:30: optimized:  loop versioned for vectorization because of possible aliasing
+src/kernels.c:86:34: optimized: loop vectorized using 16 byte vectors and unroll factor 4
+src/kernels.c:86:34: optimized: loop vectorized using 16 byte vectors and unroll factor 4
+src/kernels.c:122:34: optimized: loop vectorized using 16 byte vectors and unroll factor 4
+src/kernels.c:122:34: optimized: loop vectorized using 16 byte vectors and unroll factor 4
+
+== Missed loops ==
+src/kernels.c:14:26: missed: couldn't vectorize loop
+src/kernels.c:14:26: missed: not vectorized: unsupported control flow in loop.
+src/kernels.c:15:30: missed: couldn't vectorize loop
+src/kernels.c:15:30: missed: not vectorized: unsupported control flow in loop.
+src/kernels.c:18:34: missed: couldn't vectorize loop
+src/kernels.c:18:34: missed: Loop costings may not be worthwhile.
+src/kernels.c:32:26: missed: couldn't vectorize loop
+src/kernels.c:32:26: missed: not vectorized: unsupported control flow in loop.
+src/kernels.c:33:30: missed: couldn't vectorize loop
+src/kernels.c:33:30: missed: not vectorized: unsupported control flow in loop.
+src/kernels.c:36:34: missed: couldn't vectorize loop
+src/kernels.c:36:34: missed: Loop costings may not be worthwhile.
+src/kernels.c:50:26: missed: couldn't vectorize loop
+src/kernels.c:50:26: missed: not vectorized: loop nest containing two or more consecutive inner loops cannot be vectorized
+src/kernels.c:58:30: missed: couldn't vectorize loop
+src/kernels.c:63:31: missed: not vectorized: complicated access pattern.
+src/kernels.c:74:26: missed: couldn't vectorize loop
+src/kernels.c:74:26: missed: not vectorized: loop nest containing two or more consecutive inner loops cannot be vectorized
+src/kernels.c:82:30: missed: couldn't vectorize loop
+src/kernels.c:87:31: missed: not vectorized: complicated access pattern.
+src/kernels.c:83:42: missed: couldn't vectorize loop
+src/kernels.c:87:31: missed: not vectorized: complicated access pattern.
+src/kernels.c:79:27: missed: statement clobbers memory: __builtin_memcpy (output_row_32, bias_42(D), _41);
+src/kernels.c:107:26: missed: couldn't vectorize loop
+src/kernels.c:107:26: missed: not vectorized: loop nest containing two or more consecutive inner loops cannot be vectorized
+src/kernels.c:117:30: missed: couldn't vectorize loop
+src/kernels.c:123:52: missed: failed: evolution of base is not affine.
+src/kernels.c:118:42: missed: couldn't vectorize loop
+src/kernels.c:123:52: missed: failed: evolution of base is not affine.
+src/kernels.c:114:27: missed: statement clobbers memory: __builtin_memcpy (output_row_44, aligned_bias_36, _50);
